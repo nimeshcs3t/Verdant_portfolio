@@ -7,9 +7,8 @@
     "userInterfaceStyle": "automatic",
     "assetBundlePatterns": ["**/*"],
     "web": {
-  "bundler": "metro",
-  "output": "static",
-  "use": "react-navigation" 
+      "bundler": "metro",
+      "output": "single"
     },
     "ios": {
       "bundleIdentifier": "com.portfoliotrack.app",
