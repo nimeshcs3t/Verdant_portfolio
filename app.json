@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "PortfolioTrack",
+    "slug": "portfoliotrack",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": ["**/*"],
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "ios": {
+      "bundleIdentifier": "com.portfoliotrack.app",
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.portfoliotrack.app"
+    },
+    "plugins": ["expo-secure-store"]
+  }
+}
