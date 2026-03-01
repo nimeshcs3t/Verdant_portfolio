@@ -1,6 +1,6 @@
-import 'react-native-gesture-handler'; // MUST be at the very top
+import 'react-native-gesture-handler';
 import React, { useEffect } from 'react';
-import { Platform, StyleSheet, View, Text } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -10,7 +10,7 @@ import { AuthProvider } from './src/context/AuthContext';
 import { AppProvider } from './src/context/AppContext';
 import RootNavigator from './src/navigation/RootNavigator';
 
-// 1. Web-Specific CSS Fix: Prevents 0px height white screens
+// Web CSS Fix: Prevents the app from collapsing to 0px height
 if (Platform.OS === 'web') {
   const style = document.createElement('style');
   style.textContent = `
@@ -24,26 +24,23 @@ if (Platform.OS === 'web') {
     #root > div {
       flex: 1;
       display: flex;
-      flex-direction: column;
     }
   `;
   document.head.append(style);
 }
 
 export default function App() {
-  
   useEffect(() => {
-    console.log("APP INITIALIZED - API URL:", process.env.EXPO_PUBLIC_API_URL);
+    console.log("🚀 App Started");
+    console.log("🔗 API URL:", process.env.EXPO_PUBLIC_API_URL);
   }, []);
 
   return (
     <GestureHandlerRootView style={styles.container}>
       <SafeAreaProvider>
-        {/* We wrap the providers in a simple try/catch logic via standard React if needed, 
-            but for now, we ensure they have a flex:1 container */}
         <AuthProvider>
           <AppProvider>
-            <NavigationContainer fallback={<View style={styles.loading}><Text>Loading Navigation...</Text></View>}>
+            <NavigationContainer>
               <RootNavigator />
             </NavigationContainer>
           </AppProvider>
@@ -56,14 +53,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // On web, '100vh' ensures it takes the full browser height
     minHeight: Platform.OS === 'web' ? '100vh' : '100%',
-    backgroundColor: '#000', // Matches your likely theme to avoid white flash
+    backgroundColor: '#000', // Change to your theme color
   },
-  loading: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#000'
-  }
 });
